@@ -9,63 +9,51 @@
         
         public function testProductPeso()
         {
-            $p1 = new Product(47, 1.69, 16.5, "Normal");
-
+            $p1 = new Product(47, 1.69);
             $this->assertEquals(47, $p1->getPeso());
         }
 
         public function testProductSetPeso()
         {
-            $p1 = new Product(47, 1.69, 16.5, "Normal");
+            $p1 = new Product(47, 1.69);
             $p1->setPeso(50);
             $this->assertEquals(50, $p1->getPeso());
         }
 
         public function testProductAltura(){
-            $p2 = new Product(47, 1.69, 16.5, "Normal");
-            
+            $p2 = new Product(47, 1.69);
             $this->assertEquals(1.69, $p2->getAltura());
         }
 
         public function testProductSetAltura()
         {
-            $p2 = new Product(47, 1.69, 16.5, "Normal");
+            $p2 = new Product(47, 1.69);
             $p2->setAltura(1.71);
             $this->assertEquals(1.71, $p2->getAltura());
         }
         
-        public function testProductImc(){
-            $p3 = new Product(47, 1.69, 16.5, "Normal");
-            
-            $this->assertEquals(16.5, $p3->getImc());
-        }
-
-        public function testProductSetImc()
+        public function testImcCalculo()
         {
-            $p3 = new Product(47, 1.69, 16.5, "Normal");
-            $p3->setImc(17);
-            $this->assertEquals(17, $p3->getImc());
+            $p1 = new Product("Karina", 45, 1.70);
+            $this->assertEquals("Magreza", $p1->classificacaoImc(45, 1.70));
+
+            $p2 = new Product("Karina", 72, 1.70);
+            $this->assertEquals("Peso Normal", $p2->classificacaoImc(72, 1.70));
+
+            $p3 = new Product("Karina", 70, 1.60);
+            $this->assertEquals("Sobrepeso", $p3->classificacaoImc(70, 1.60));
+
+            $p4 = new Product("Karina", 93, 1.70);
+            $this->assertEquals("Obesidade I", $p4->classificacaoImc(93, 1.70));
+
+            $p5 = new Product("Karina", 109, 1.70);
+            $this->assertEquals("Obesidade II", $p5->classificacaoImc(110, 1.70));
+
+            $p6 = new Product("Karina", 200, 1.70);
+            $this->assertEquals("Obesidade III", $p6->classificacaoImc(200, 1.70));
         }
 
-        public function testProductClassificacao(){
-            $p4 = new Product(47, 1.69, 16.5, "Normal");
-            
-            $this->assertEquals("Normal", $p4->getClassificacao());
-        }
 
-        public function testProductSetClassificacao()
-        {
-            $p4 = new Product(47, 1.69, 16.5, "Normal");
-            $p4->setClassificacao("Abaixo do peso");
-            $this->assertEquals("Abaixo do peso", $p4->getClassificacao());
-        }
-
-        public function testVerificarTrue(){
-            $this->assertTrue(true);
-        }
-
-        public function testVerificarFalse(){
-            $this->assertFalse(false);
-        }
+        
     }
 ?>
